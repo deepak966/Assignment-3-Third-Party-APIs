@@ -28,19 +28,41 @@ async function getWeather() {
   const city = document.getElementById("cityInput").value.trim();
 
   if (!city) {
-    console.log("Please enter a city name");
+    showError("Please enter a city name");
     return;
   }
+
+  showLoading(true);
+  hideError();
+  hideWeatherCard();
 
   try {
     const response = await fetch(
       `${API_URL}?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
     );
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error(
+          "City not found. Please check the spelling and try again."
+        );
+      } else if (response.status === 401) {
+        throw new Error(
+          "Invalid API key. Please check your API key configuration."
+        );
+      } else {
+        throw new Error(
+          "Failed to fetch weather data. Please try again later."
+        );
+      }
+    }
+
     const data = await response.json();
-    console.log(data); // for testing
     displayWeather(data);
   } catch (error) {
-    console.error(error);
+    showError(error.message);
+  } finally {
+    showLoading(false);
   }
 }
 
