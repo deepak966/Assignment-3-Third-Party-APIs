@@ -80,3 +80,19 @@ function displayWeather(data) {
 `;
   document.getElementById("weatherDetails").innerHTML = detailsHTML;
 }
+
+
+function getWindDirection(degrees) {
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    const index = Math.round(degrees / 45) % 8;
+    return `${directions[index]} (${degrees}°)`;
+}
+
+function formatTime(timestamp) {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true 
+    });
+}
