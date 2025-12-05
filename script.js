@@ -38,6 +38,7 @@ async function getWeather() {
     );
     const data = await response.json();
     console.log(data); // for testing
+    displayWeather(data);
   } catch (error) {
     console.error(error);
   }
@@ -79,20 +80,83 @@ function displayWeather(data) {
     </div>
 `;
   document.getElementById("weatherDetails").innerHTML = detailsHTML;
+
+  const additionalHTML = `
+    <h3 style="margin-bottom: 15px; color: #333;">Additional Information</h3>
+    <div class="info-row">
+        <span class="info-label">Min Temperature:</span>
+        <span class="info-value">${Math.round(data.main.temp_min)}°C</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Max Temperature:</span>
+        <span class="info-value">${Math.round(data.main.temp_max)}°C</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Visibility:</span>
+        <span class="info-value">${(data.visibility / 1000).toFixed(
+          1
+        )} km</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Cloudiness:</span>
+        <span class="info-value">${data.clouds.all}%</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Wind Direction:</span>
+        <span class="info-value">${getWindDirection(data.wind.deg)}</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Sunrise:</span>
+        <span class="info-value">${formatTime(data.sys.sunrise)}</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Sunset:</span>
+        <span class="info-value">${formatTime(data.sys.sunset)}</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Coordinates:</span>
+        <span class="info-value">${data.coord.lat.toFixed(
+          2
+        )}°, ${data.coord.lon.toFixed(2)}°</span>
+    </div>
+`;
+  document.getElementById("additionalInfo").innerHTML = additionalHTML;
+  showWeatherCard();
 }
 
-
 function getWindDirection(degrees) {
-    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-    const index = Math.round(degrees / 45) % 8;
-    return `${directions[index]} (${degrees}°)`;
+  const directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  const index = Math.round(degrees / 45) % 8;
+  return `${directions[index]} (${degrees}°)`;
 }
 
 function formatTime(timestamp) {
-    const date = new Date(timestamp * 1000);
-    return date.toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: true 
-    });
+  const date = new Date(timestamp * 1000);
+  return date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
+function showLoading(show) {
+  document.getElementById("loading").style.display = show ? "block" : "none";
+}
+
+function showError(message) {
+  const errorDiv = document.getElementById("error");
+  errorDiv.textContent = message;
+  errorDiv.style.display = "block";
+}
+
+function hideError() {
+  document.getElementById("error").style.display = "none";
+}
+
+function showWeatherCard() {
+  document.getElementById("weatherCard").style.display = "block";
+}
+
+function hideWeatherCard() {
+  document.getElementById("weatherCard").style.display = "none";
 }
