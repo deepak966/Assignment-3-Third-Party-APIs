@@ -15,3 +15,41 @@ body {
     max-width: 900px;
     margin: 0 auto;
 }
+
+.header {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.api-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.api-link:hover {
+    text-decoration: underline;
+}
+
+.search-section {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
