@@ -104,3 +104,102 @@ button:active {
     margin-top: 15px;
     display: none;
 }
+
+.weather-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: none;
+}
+
+.main-weather {
+    text-align: center;
+    padding-bottom: 25px;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 25px;
+}
+
+.city-name {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.weather-icon {
+    font-size: 80px;
+    margin: 20px 0;
+}
+
+.temperature {
+    font-size: 48px;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 24px;
+    color: #666;
+    text-transform: capitalize;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.detail-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.detail-label {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.detail-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.detail-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.additional-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #666;
+    font-weight: 600;
+}
+
+.info-value {
+    color: #333;
+}
